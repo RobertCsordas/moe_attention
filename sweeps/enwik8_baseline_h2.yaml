@@ -1,0 +1,49 @@
+program: main.py
+command:
+  - ${env}
+  - python3
+  - ${program}
+  - ${args}
+method: grid
+metric:
+  name: validation/mean_accuracy
+  goal: maximize
+parameters:
+  name:
+    value: enwik8
+  log:
+    value: wandb
+  task:
+    value: enwik8_transformer
+  test_interval:
+    value: 2000
+  state_size:
+    value: 512
+  transformer.ff_multiplier:
+    value: 4.01
+  transformer.encoder_n_layers:
+    value: 12
+  transformer.n_heads:
+    value: 2
+  dropout:
+    value: 0.1
+  lr:
+    value: 0.00025
+  optimizer:
+    value: adamw
+  lm.unroll:
+    value: 512
+  batch_size:
+    value: 32
+  grad_clip:
+    value: 0.25
+  amp:
+    value: 1
+  save_interval:
+    value: 10000
+  transformer.variant:
+    value: preln_relative
+  stop_after:
+    value: 100000
+  lr_sched.type:
+    value: cos

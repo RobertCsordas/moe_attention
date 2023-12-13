@@ -1,0 +1,194 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Enwik8 RelTrafo 12L baseline",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--name", "enwik8_rel_trafo_12l", "--log", "tb", "--task", "enwik8_transformer",
+                        "--keep_alive", "1", "-reset", "1", "-test_interval", "2000",
+                        "--state_size", "256", "-transformer.encoder_n_layers", "12", "-transformer.n_heads", "8",
+                        "--dropout", "0.1", "--lr", "0.0001", "-lm.unroll", "256", "-batch_size", "64",
+                        "-grad_clip", "0.1", "-transformer.variant", "preln_relative",
+                        "-transformer.ff_multiplier", "4", "-amp", "1"]
+        },
+
+        {
+            "name": "Moe test",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--name", "wikitext103_moe_test", "--log", "tb", "--task", "wikitext103_sp_transformer",
+                     "--keep_alive", "1", "-reset", "1", "-test_interval", "2000",
+                    "--state_size", "412", "-transformer.encoder_n_layers", "8", "-transformer.n_heads", "10",
+                    "-transformer.head_projection_size", "41",
+                    "--dropout", "0.1", "--lr", "0.00025", "-lm.unroll", "256", "-batch_size", "64",
+                    "-grad_clip", "0.25", "-transformer.variant", "preln_moe",
+                    "-moe.n_experts","128", "-moe.expert_size", "128",
+                      "-transformer.p_drop_layer", "0",
+                    "-moe.selection_mode", "sigmoid", "-moe.perplexity_reg", "0.01",
+                     "-amp", "1",  "-pkm.n_heads", "4",
+                     "-moe.norm_expert_sel_init", "1", "-moe.reg_type", "entropy",
+                     "-moe.perplexity_reg_mode", "global",
+                    "-lr_sched.type", "cos", "-stop_after", "100000",
+                    "-moe.drop_expert", "0.1", "-moe.activation_after_topk", "1"]
+        },
+
+        {
+            "name": "C4 test",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--name", "c4_moe_test", "--log", "tb", "--task", "c4_transformer",
+                     "--keep_alive", "1", "-reset", "1", "-test_interval", "2000",
+                    "--state_size", "412", "-transformer.encoder_n_layers", "8", "-transformer.n_heads", "10",
+                    "-transformer.head_projection_size", "41",
+                    "--dropout", "0.1", "--lr", "0.00025", "-lm.unroll", "256", "-batch_size", "8",
+                    "-grad_clip", "0.25", "-transformer.variant", "preln_moe",
+                    "-moe.n_experts","128", "-moe.expert_size", "128",
+                      "-transformer.p_drop_layer", "0",
+                    "-moe.selection_mode", "sigmoid", "-moe.perplexity_reg", "0.01",
+                     "-amp", "1",  "-pkm.n_heads", "4",
+                     "-moe.norm_expert_sel_init", "1", "-moe.reg_type", "entropy",
+                     "-moe.perplexity_reg_mode", "global",
+                    "-lr_sched.type", "cos", "-stop_after", "100000",
+                    "-moe.drop_expert", "0.1", "-moe.activation_after_topk", "1", "-lmds.valid_ratio", "0.005"]
+        },
+
+        {
+            "name": "Wikitext103 RelTrafo MoE XL base moeatt",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--name", "wikitext103_reltrafo_moe_xl_base_moeatt", "--log", "tb", "--task", "wikitext103_sp_transformer",
+                     "--keep_alive", "1", "-reset", "1", "-test_interval", "2000",
+                    "--state_size", "412", "-transformer.encoder_n_layers", "16", "-transformer.n_heads", "10",
+                    "-transformer.head_projection_size", "44",
+                    "--dropout", "0.1", "--lr", "0.0001", "-lm.unroll", "256", "-batch_size", "4",
+                    "-grad_clip", "0.1", "-transformer.variant", "preln_moe_universal",
+                    "-moe.n_experts", "366", "-moe.expert_size", "128",
+                      "-transformer.p_drop_layer", "0.1",
+                      "-moe.selection_mode", "sigmoid", "-moe.perplexity_reg", "0.01", "-moe.key_mode", "moe",
+                    "-moe.half_key", "0", "-amp", "1", "-log_grad_norms", "0", "-pkm.n_heads", "4",
+                    "-moe.norm_keys", "0", "-moe.perplexity_reg_mode", "global", "-moe.n_random", "0",
+                "-kvmem.dropout", "none", "-moe.reg_type", "variance", "-moe.std_correction", "0",
+                "-moe.topk_mode", "full", "-moe.norm_value_init", "1", "-moe.identical_init", "1",
+                "-moe.att.enable", "1", "-moe.att.variant", "full", "-moe.att.n_experts", "5",
+                "-moe.att.perplexity_reg", "0", "-moe.att.expert_dropout", "0",
+            "-moe.att.q_expert", "0", "-moe.att.v_expert", "1", "-moe.att.k", "2", "-moe.att.qside_n_experts", "2"]
+        },
+
+        {
+            "name": "Wikitext103 MoA",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--name", "wikitext103_moa", "--log", "tb", "--task", "wikitext103_sp_transformer",
+                     "--keep_alive", "1", "-reset", "1", "-test_interval", "2000",
+                    "--state_size", "412", "-transformer.encoder_n_layers", "16", "-transformer.n_heads", "4",
+                    "--dropout", "0.2", "--lr", "0.00025", "-lm.unroll", "128", "-batch_size", "22",
+                    "-transformer.ff_multiplier", "5.005",
+                    "-grad_clip", "0.1", "-transformer.variant", "preln_moeatt",
+                    "-transformer.head_projection_size", "88", "-moe.att.selection_mode", "sigmoid",
+                    "-moe.att.n_experts", "10", "-moe.att.variant", "moa", "-moa.cvloss", "0", "-moa.switchloss", "0.01", "-moa.zloss", "0.001",
+                    "-moa.mode", "moa"]
+        },
+
+        {
+            "name": "Wikitext103 fullmoe",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--name", "wikitext103_fullmoe", "--log", "tb", "--task", "wikitext103_sp_transformer",
+                     "--keep_alive", "1", "-reset", "1", "-test_interval", "2000",
+                    "--state_size", "412", "-transformer.encoder_n_layers", "16", "-transformer.n_heads", "2",
+                    "--dropout", "0.2", "--lr", "0.00025", "-lm.unroll", "128", "-batch_size", "22",
+                    "-transformer.ff_multiplier", "4.985",
+                    "-grad_clip", "0.1", "-transformer.variant", "preln_moeatt",
+                    "-transformer.head_projection_size", "44", "-moe.att.selection_mode", "sigmoid",
+                    "-moe.att.n_experts", "5", "-moe.att.variant", "full",  "-moe.att.q_expert", "0", "-moe.att.v_expert", "1",
+                    "-moe.att.norm_qk", "0", "-moe.att.v_size", "none", "-moe.att.same_sel", "0", "-moe.att.o_expert", "1",
+                    "-moe.att.k_expert", "0",
+                    "-moe.att.qside_n_experts", "none",
+                    "-moe.att.shared_experts", "0", "-moe.att.drop_expert", "0",
+                    "-amp", "1", "-n_microbatch", "2", "-moe.att.norm_init", "1"]
+        },
+
+        {
+            "name": "Wikitext103 fullmoe rope",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--name", "wikitext103_fullmoe_rope", "--log", "tb", "--task", "wikitext103_sp_transformer",
+                     "--keep_alive", "1", "-reset", "1", "-test_interval", "2000",
+                    "--state_size", "412", "-transformer.encoder_n_layers", "16", "-transformer.n_heads", "2",
+                    "--dropout", "0.2", "--lr", "0.00025", "-lm.unroll", "128", "-batch_size", "22",
+                    "-transformer.ff_multiplier", "5.08",
+                    "-grad_clip", "0.1", "-transformer.variant", "preln_moeatt",
+                    "-transformer.head_projection_size", "64", "-moe.att.selection_mode", "sigmoid",
+                    "-moe.att.n_experts", "5", "-moe.att.variant", "full_rope",  "-moe.att.q_expert", "0", "-moe.att.v_expert", "1",
+                    "-moe.att.norm_qk", "0", "-moe.att.v_size", "none", "-moe.att.same_sel", "0", "-moe.att.o_expert", "1",
+                    "-moe.att.k_expert", "0",
+                    "-moe.att.qside_n_experts", "none",
+                    "-moe.att.shared_experts", "0",
+                    "-amp", "1", "-n_microbatch", "2", "-lm.trafo.context_blocks", "0"]
+        },
+
+        {
+            "name": "Wikitext103 RelTrafo MoE + moeatt nonshared size match",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--name", "wikitext103_moe_moeatt_size_match", "--log", "tb", "--task", "wikitext103_sp_transformer",
+                     "--keep_alive", "1", "-reset", "1", "-test_interval", "2000",
+                    "--state_size", "412", "-transformer.encoder_n_layers", "16", "-transformer.n_heads", "2",
+                    "--dropout", "0.1", "--lr", "0.00025", "-lm.unroll", "256", "-batch_size", "16",
+                    "-grad_clip", "0.25", "-transformer.variant", "preln_moe",
+                    "-moe.n_experts","16", "-moe.expert_size", "132",
+                      "-transformer.p_drop_layer", "0",
+                    "-moe.selection_mode", "sigmoid", "-moe.perplexity_reg", "0.001",
+                     "-amp", "1",  "-pkm.n_heads", "4",
+                     "-moe.norm_expert_sel_init", "1", "-moe.reg_type", "entropy",
+                     "-moe.perplexity_reg_mode", "global",
+                     "-lr_sched.type", "cos", "-stop_after", "100000",
+                    "-transformer.head_projection_size", "72", "-moe.att.variant", "full",
+                    "-moe.att.selection_mode", "sigmoid", "-moe.att.q_expert", "0", "-moe.att.v_expert", "1",
+                    "-moe.att.k_expert", "0", "-moe.att.enable", "1", "-moe.att.perplexity_reg", "0",
+                    "-moe.att.expert_dropout", "0", "-moe.att.k", "2", "-moe.att.n_experts", "5", "-nan_detect", "0"
+                ]
+        },
+
+        {
+            "name": "Analyze dense",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "console": "integratedTerminal",
+            "args": ["--name", "analyze_dense", "--log", "tb", "--restore", "paper/checkpoints/btwb7k9x/model-100000.pth", "-reset", "1", "--test_only", "1", "-keep_alive", "1", "-val_log_details", "1", "-task", "wikitext103_sp_transformer_analyze"]
+        }
+
+        {
+            "type": "python",
+            "request": "launch",
+            "name": "Debug File",
+            "justMyCode": false,
+            "program": "${file}",
+            "cwd": "${fileDirname}"
+        },
+
+
+
+    ]
+}

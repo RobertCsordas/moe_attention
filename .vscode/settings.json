@@ -1,0 +1,23 @@
+{
+    "python.languageServer": "Pylance",
+    "python.linting.pylintEnabled": false,
+    "editor.rulers": [120],
+    "python.analysis.typeCheckingMode": "basic",
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8CategorySeverity.F": "Warning",
+    "python.linting.flake8Args": [
+        "--ignore=E203, E266, E501, W503",
+        "--max-line-length=120",
+        "--select=B,C,E,F,W,T4,B9",
+        "--max-complexity=18"
+    ],
+    "workbench.colorCustomizations": {
+        "editorError.background": "#ff990028",
+        "editorError.foreground": "#00000000",
+        "editorWarning.background": "#ff000028",
+        "editorWarning.foreground": "#00000000",
+    },
+    "files.trimTrailingWhitespace": true,
+    "editor.minimap.enabled": false,
+    "window.autoDetectColorScheme": true,
+}

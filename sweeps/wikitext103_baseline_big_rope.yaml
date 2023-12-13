@@ -1,0 +1,61 @@
+program: main.py
+command:
+  - ${env}
+  - python3
+  - ${program}
+  - ${args}
+method: grid
+metric:
+  name: validation/mean_accuracy
+  goal: maximize
+parameters:
+  log:
+    value: wandb
+  task:
+    value: wikitext103_sp_transformer
+  test_interval:
+    value: 2000
+  state_size:
+    value: 1024
+  transformer.ff_multiplier:
+    value: 4.014
+  transformer.encoder_n_layers:
+    value: 18
+  transformer.n_heads:
+    value: 16
+  dropout:
+    value: 0.2
+  lr:
+    value: 0.00025
+  optimizer:
+    value: adamw
+  lm.unroll:
+    value: 1024
+  batch_size:
+    value: 64
+  grad_clip:
+    value: 0.25
+  amp:
+    value: 1
+  save_interval:
+    value: 10000
+  transformer.variant:
+    value: preln_rope
+  stop_after:
+    value: 100000
+  lr_sched.type:
+    value: cos
+  lr_warmup:
+    value: 4000
+  lmds.valid_ratio:
+    value: 0.005
+  debug_plot_interval:
+    value: 500
+  transformer.plot_head_details:
+    value: 1
+  plot.n_steps:
+    value: -128
+  lm.trafo.context_blocks:
+    value: 0
+  n_microbatch:
+    value: 2
