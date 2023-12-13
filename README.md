@@ -1,6 +1,6 @@
 # Codebase for SwitchHead
 
-The official repository for our paper "SwitchHead: Accelerating Transformers with Mixture-of-Expert Attention".
+The official repository for our paper "SwitchHead: Accelerating Transformers with Mixture-of-Experts Attention".
 
 Please note that this repository is a cleaned-up version of the internal research repository we use. In case you encounter any problems with it, please don't hesitate to contact me.
 
