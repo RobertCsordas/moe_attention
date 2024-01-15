@@ -353,7 +353,7 @@ class TransformerLMMixin:
         ]
 
     def validate_on_name(self, name: str) -> Tuple[Any, float]:
-        if (self.VIS_DATASET_FILTER is None) or (name in self.VIS_DATASET_FILTER):
+        if (getattr(self, 'VIS_DATASET_FILTER', None) is None) or (name in self.VIS_DATASET_FILTER):
             self.validation_started_on = name
             self.validation_step = 0
 
