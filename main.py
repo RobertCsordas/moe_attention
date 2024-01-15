@@ -53,6 +53,7 @@ def register_args(parser: framework.helpers.ArgumentParser):
     parser.add_argument("-log_grad_norms", default=False)
     parser.add_argument("-n_microbatch", default="none", parser=parser.int_or_none_parser)
     parser.add_argument("-dump_logs", default=False)
+    parser.add_argument("-dump_validation_plots", default=False)
     parser.add_argument("-val_log_details", default=False)
     parser.add_argument("-nan_detect", default=False)
 
