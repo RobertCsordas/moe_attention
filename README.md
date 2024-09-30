@@ -1,6 +1,8 @@
 # Codebase for SwitchHead
 
-The official repository for our paper "SwitchHead: Accelerating Transformers with Mixture-of-Experts Attention".
+The official training and experiment code for our paper "SwitchHead: Accelerating Transformers with Mixture-of-Experts Attention".
+
+For a simple and easy to use implementation that you can directly use in your project, please refer to [https://github.com/robertcsordas/switchhead](https://github.com/robertcsordas/switchhead).
 
 Please note that this repository is a cleaned-up version of the internal research repository we use. In case you encounter any problems with it, please don't hesitate to contact me.
 
